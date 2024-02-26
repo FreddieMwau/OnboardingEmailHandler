@@ -1,5 +1,5 @@
 # Ignore Orchestrator specific files (if used)
-project.json
+# project.json
 
 # Ignore Logs folder
 Logs/
