@@ -3,7 +3,7 @@
     <x:Property Name="in_TransactionItem" Type="InArgument(ui:QueueItem)" />
     <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>1114.4,647.2</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1498.4,864.8</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -113,6 +113,10 @@
       <AssemblyReference>UiPath.Mail</AssemblyReference>
       <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
       <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>System.Linq.Parallel</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Linq.Queryable</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Sequence sap:VirtualizedContainerService.HintSize="515.2,549.6" sap2010:WorkflowViewState.IdRef="Sequence_48">
@@ -150,7 +154,7 @@
                 <ActivityAction.Argument>
                   <DelegateInArgument x:TypeArguments="ui:WordDocument" Name="WordDocumentScope" />
                 </ActivityAction.Argument>
-                <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="496,1140.8" sap2010:WorkflowViewState.IdRef="Sequence_41">
+                <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="496,1140" sap2010:WorkflowViewState.IdRef="Sequence_41">
                   <Sequence.Variables>
                     <Variable x:TypeArguments="x:String" Name="str_FinalRejectionPath" />
                     <Variable x:TypeArguments="x:Boolean" Name="isFound" />
@@ -165,7 +169,7 @@
                   <p:WordReplaceText DisplayName="Replace [Recipient's Name] in Document" Found="[isFound]" sap:VirtualizedContainerService.HintSize="433.6,204.8" sap2010:WorkflowViewState.IdRef="WordReplaceText_27" Replace="[in_TransactionItem.SpecificContent(&quot;FirstName&quot;).ToString &amp; &quot; &quot; &amp; in_TransactionItem.SpecificContent(&quot;LastName&quot;).ToString]" ReplaceAll="True" Search="%[Recipient's Name]" />
                   <p:WordReplaceText Found="{x:Null}" DisplayName="Replace [Job Title] in Document" sap:VirtualizedContainerService.HintSize="433.6,204.8" sap2010:WorkflowViewState.IdRef="WordReplaceText_28" Replace="[in_TransactionItem.SpecificContent(&quot;JobTitle&quot;).ToString]" ReplaceAll="True" Search="%[Job Title]" />
                   <p:WordReplaceText Found="{x:Null}" DisplayName="Replace [Generic Company Name] in Document" sap:VirtualizedContainerService.HintSize="433.6,204.8" sap2010:WorkflowViewState.IdRef="WordReplaceText_29" Replace="[str_CompanyName]" ReplaceAll="True" Search="%[Generic Company Name]" />
-                  <Assign DisplayName="Assign Path to Save Manipulated Letter" sap:VirtualizedContainerService.HintSize="433.6,121.6" sap2010:WorkflowViewState.IdRef="Assign_6">
+                  <Assign DisplayName="Assign Path to Save Manipulated Letter" sap:VirtualizedContainerService.HintSize="433.6,120.8" sap2010:WorkflowViewState.IdRef="Assign_6">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[str_FinalRejectionPath]</OutArgument>
                     </Assign.To>
@@ -198,13 +202,14 @@
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
             </ActivityAction.Argument>
-            <Sequence sap2010:Annotation.AnnotationText="This sequence handles system exceptions that may occur during the automation process. It includes activities to capture a screenshot of the screen when an exception occurs and sends an email notification to stakeholders to inform them about the encountered issue." sap:VirtualizedContainerService.HintSize="496,629.6" sap2010:WorkflowViewState.IdRef="Sequence_49">
+            <Sequence sap2010:Annotation.AnnotationText="This sequence handles system exceptions that may occur during the automation process. It includes activities to capture a screenshot of the screen when an exception occurs and sends an email notification to stakeholders to inform them about the encountered issue." sap:VirtualizedContainerService.HintSize="416,156.8" sap2010:WorkflowViewState.IdRef="Sequence_49">
               <Sequence.Variables>
                 <Variable x:TypeArguments="x:String" Name="str_FilePath" />
+                <Variable x:TypeArguments="x:String" Name="str_EmailAddresses" />
               </Sequence.Variables>
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                 </scg:Dictionary>
@@ -214,7 +219,7 @@
                   <OutArgument x:TypeArguments="x:String">[str_FolderPath]</OutArgument>
                 </Assign.To>
                 <Assign.Value>
-                  <InArgument x:TypeArguments="x:String">["Data\Exceptions_Screenshots"]</InArgument>
+                  <InArgument x:TypeArguments="x:String">["Exceptions_Screenshots"]</InArgument>
                 </Assign.Value>
               </Assign>
               <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke TakeScreenshot Workflow" sap:VirtualizedContainerService.HintSize="433.6,153.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Framework\TakeScreenshot.xaml">
