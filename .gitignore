@@ -1,6 +1,6 @@
 # Ignore Orchestrator specific files (if used)
 # project.json
-
+.local/*
 # Ignore Logs folder
 Logs/
 
