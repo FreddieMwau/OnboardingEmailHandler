@@ -7,7 +7,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>727.3333333333334,2364.6666666666665</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1201.3333333333333,2364.6666666666665</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>SendToHiredCandidates_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -154,10 +154,12 @@
                     <InArgument x:TypeArguments="scg:List(x:String)">[Directory.GetFiles(str_Acceptance_Letter_FilePath).ToList]</InArgument>
                   </Assign.Value>
                 </Assign>
-                <ui:SendOutlookMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" Account="emilytiampati@outlook.com" AttachmentsCollection="[list_Email_Attachments]" Body="[in_Config(&quot;Hired_Email_Body&quot;).ToString]" DisplayName="Send Outlook Mail Message To Hired Candidates" sap:VirtualizedContainerService.HintSize="450,190.66666666666666" sap2010:WorkflowViewState.IdRef="SendOutlookMail_1" Importance="Normal" IsBodyHtml="False" IsDraft="False" Sensitivity="Normal" Subject="[in_Config(&quot;Hired_Email_Subject&quot;).ToString]" TimeoutMS="30000" To="[str_Candidate_EmailAddress]">
+                <ui:SendOutlookMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" Account="[in_Config(&quot;From_Email&quot;).ToString]" AttachmentsCollection="[list_Email_Attachments]" Body="[in_Config(&quot;Hired_Email_Body&quot;).ToString]" DisplayName="Send Outlook Mail Message To Hired Candidates" sap:VirtualizedContainerService.HintSize="450,190.66666666666666" sap2010:WorkflowViewState.IdRef="SendOutlookMail_1" Importance="Normal" IsBodyHtml="False" IsDraft="False" Sensitivity="Normal" Subject="[in_Config(&quot;Hired_Email_Subject&quot;).ToString]" TimeoutMS="30000" To="[str_Candidate_EmailAddress]">
                   <ui:SendOutlookMail.Files>
                     <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
-                      <InArgument x:TypeArguments="x:String">[str_RisingStar_FilePath]</InArgument>
+                      <InArgument x:TypeArguments="x:String">
+                        <VisualBasicValue x:TypeArguments="x:String" ExpressionText="str_RisingStar_FilePath" />
+                      </InArgument>
                     </scg:List>
                   </ui:SendOutlookMail.Files>
                 </ui:SendOutlookMail>
@@ -213,10 +215,12 @@
                     </scg:List>
                   </ui:MultipleAssign.AssignOperations>
                 </ui:MultipleAssign>
-                <ui:SendOutlookMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" Account="emilytiampati@outlook.com" AttachmentsCollection="[list_Email_Attachments]" Body="[in_Config(&quot;Rejected_Email_Subject&quot;).ToString]" DisplayName="Send Outlook Mail Message To Rejected Candidates" sap:VirtualizedContainerService.HintSize="478.6666666666667,190.66666666666666" sap2010:WorkflowViewState.IdRef="SendOutlookMail_4" Importance="Normal" IsBodyHtml="False" IsDraft="False" Sensitivity="Normal" Subject="[str_Rejection_Email_Subject]" To="[str_Candidate_EmailAddress]">
+                <ui:SendOutlookMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" Account="[in_Config(&quot;From_Email&quot;).ToString]" Body="[in_Config(&quot;Rejected_Email_Subject&quot;).ToString]" DisplayName="Send Outlook Mail Message To Rejected Candidates" sap:VirtualizedContainerService.HintSize="478.6666666666667,190.66666666666666" sap2010:WorkflowViewState.IdRef="SendOutlookMail_4" Importance="Normal" IsBodyHtml="False" IsDraft="False" Sensitivity="Normal" Subject="[str_Rejection_Email_Subject]" To="[str_Candidate_EmailAddress]">
                   <ui:SendOutlookMail.Files>
                     <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
-                      <InArgument x:TypeArguments="x:String" />
+                      <InArgument x:TypeArguments="x:String">
+                        <VisualBasicValue x:TypeArguments="x:String" ExpressionText="list_Email_Attachments(0)" />
+                      </InArgument>
                     </scg:List>
                   </ui:SendOutlookMail.Files>
                 </ui:SendOutlookMail>
@@ -254,7 +258,7 @@
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
             </ActivityAction.Argument>
-            <Sequence sap2010:Annotation.AnnotationText="This sequence handles system exceptions that may occur during the automation process. It includes activities to capture a screenshot of the screen when an exception occurs and sends an email notification to stakeholders to inform them about the encountered issue." sap:VirtualizedContainerService.HintSize="496,690" sap2010:WorkflowViewState.IdRef="Sequence_7">
+            <Sequence sap2010:Annotation.AnnotationText="This sequence handles system exceptions that may occur during the automation process. It includes activities to capture a screenshot of the screen when an exception occurs and sends an email notification to stakeholders to inform them about the encountered issue." sap:VirtualizedContainerService.HintSize="496,642" sap2010:WorkflowViewState.IdRef="Sequence_7">
               <Sequence.Variables>
                 <Variable x:TypeArguments="x:String" Name="str_FilePath" />
                 <Variable x:TypeArguments="x:String" Name="str_FolderPath" />
@@ -276,12 +280,8 @@
               </Assign>
               <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke TakeScreenshot Workflow" sap:VirtualizedContainerService.HintSize="434,155.33333333333334" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Framework\TakeScreenshot.xaml">
                 <ui:InvokeWorkflowFile.Arguments>
-                  <InArgument x:TypeArguments="x:String" x:Key="in_Folder">
-                    <VisualBasicValue x:TypeArguments="x:String" ExpressionText="str_FolderPath" />
-                  </InArgument>
-                  <InOutArgument x:TypeArguments="x:String" x:Key="io_FilePath">
-                    <VisualBasicReference x:TypeArguments="x:String" ExpressionText="str_FilePath" />
-                  </InOutArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_Folder">[str_FolderPath]</InArgument>
+                  <InOutArgument x:TypeArguments="x:String" x:Key="io_FilePath">[str_FilePath]</InOutArgument>
                 </ui:InvokeWorkflowFile.Arguments>
               </ui:InvokeWorkflowFile>
               <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" Body="[in_Config(&quot;EmailBody&quot;).ToString.Replace(&quot;@Source&quot;,  exception.Source.ToString).Replace(&quot;@Message&quot;, exception.Message.ToString)]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="434,198" sap2010:WorkflowViewState.IdRef="SendOutlookMail_5" Importance="Normal" IsBodyHtml="False" IsDraft="False" Sensitivity="Normal" Subject="[in_Config(&quot;EmailSubject&quot;).ToString]" To="[in_Config(&quot;EmailCredentials&quot;).ToString]">
