@@ -7,6 +7,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1498.4,2457.6</sap:VirtualizedContainerService.HintSize>
   <sap:VirtualizedContainerService.HintSize>1201.3333333333333,2364.6666666666665</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>SendToHiredCandidates_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
@@ -113,6 +114,193 @@
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
+  <Sequence sap:VirtualizedContainerService.HintSize="798.4,2392.8" sap2010:WorkflowViewState.IdRef="Sequence_9">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Sequence DisplayName="SendEmailToCandidates" sap:VirtualizedContainerService.HintSize="736,2304" sap2010:WorkflowViewState.IdRef="Sequence_10">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="scg:List(x:String)" Name="list_Email_Attachments" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="673.6,2192" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+        <TryCatch.Try>
+          <Sequence sap2010:Annotation.AnnotationText="This Sequence checks the status of the transaction item to determine if it's hired or rejected.&#xA;If the status is hired, the workflow sends the offer and acceptance letters as attachment to the candidate.&#xA;If the status is rejected, the workflow sends the rejection letter as attachment.&#xA;" sap:VirtualizedContainerService.HintSize="636.8,1937.6" sap2010:WorkflowViewState.IdRef="Sequence_4">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="x:String" Default="[in_TransactionItem.SpecificContent(&quot;Email&quot;).ToString()]" Name="str_Candidate_EmailAddress" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <If Condition="[in_TransactionItem.SpecificContent(&quot;Status&quot;).ToString = &quot;Hired&quot;]" sap:VirtualizedContainerService.HintSize="574.4,1775.2" sap2010:WorkflowViewState.IdRef="If_1">
+              <If.Then>
+                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="512,773.6" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="x:String" Default="Updated Template Documents" Name="str_Acceptance_Letter_FilePath" />
+                    <Variable x:TypeArguments="x:String" Default="Template Documents\Rising Stars.pptx" Name="str_RisingStar_FilePath" />
+                  </Sequence.Variables>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Assign sap:VirtualizedContainerService.HintSize="449.6,121.6" sap2010:WorkflowViewState.IdRef="Assign_1">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="scg:List(x:String)">[list_Email_Attachments]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="scg:List(x:String)">[Directory.GetFiles(str_Acceptance_Letter_FilePath).ToList]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <ui:SendOutlookMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" Account="emilytiampati@outlook.com" AttachmentsCollection="[list_Email_Attachments]" Body="[in_Config(&quot;Hired_Email_Body&quot;).ToString]" DisplayName="Send Outlook Mail Message To Hired Candidates" sap:VirtualizedContainerService.HintSize="449.6,186.4" sap2010:WorkflowViewState.IdRef="SendOutlookMail_1" Importance="Normal" IsBodyHtml="False" IsDraft="False" Sensitivity="Normal" Subject="[in_Config(&quot;Hired_Email_Subject&quot;).ToString]" TimeoutMS="30000" To="[str_Candidate_EmailAddress]">
+                    <ui:SendOutlookMail.Files>
+                      <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
+                        <InArgument x:TypeArguments="x:String">[str_RisingStar_FilePath]</InArgument>
+                      </scg:List>
+                    </ui:SendOutlookMail.Files>
+                  </ui:SendOutlookMail>
+                  <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="449.6,379.2" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[list_Email_Attachments]">
+                    <ui:ForEach.Body>
+                      <ActivityAction x:TypeArguments="x:String">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="x:String" Name="currentItem" />
+                        </ActivityAction.Argument>
+                        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="416,190.4" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:DeleteFileX DisplayName="Delete File" sap:VirtualizedContainerService.HintSize="353.6,104" sap2010:WorkflowViewState.IdRef="DeleteFileX_1" Path="[currentItem.ToString]" />
+                        </Sequence>
+                      </ActivityAction>
+                    </ui:ForEach.Body>
+                  </ui:ForEach>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="540.8,840" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="x:String" Default="Updated Template Documents" Name="str_Rejection_Letter_FilePath" />
+                    <Variable x:TypeArguments="x:String" Name="str_Rejection_Email_Subject" />
+                  </Sequence.Variables>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="478.4,188" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+                    <ui:MultipleAssign.AssignOperations>
+                      <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                        <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
+                          <ui:AssignOperation.To>
+                            <OutArgument x:TypeArguments="scg:List(x:String)">[list_Email_Attachments]</OutArgument>
+                          </ui:AssignOperation.To>
+                          <ui:AssignOperation.Value>
+                            <InArgument x:TypeArguments="scg:List(x:String)">[Directory.GetFiles(str_Rejection_Letter_FilePath).ToList]</InArgument>
+                          </ui:AssignOperation.Value>
+                        </ui:AssignOperation>
+                        <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
+                          <ui:AssignOperation.To>
+                            <OutArgument x:TypeArguments="x:String">[str_Rejection_Email_Subject]</OutArgument>
+                          </ui:AssignOperation.To>
+                          <ui:AssignOperation.Value>
+                            <InArgument x:TypeArguments="x:String">[in_TransactionItem.SpecificContent("JobTitle").ToString + " Application"]</InArgument>
+                          </ui:AssignOperation.Value>
+                        </ui:AssignOperation>
+                      </scg:List>
+                    </ui:MultipleAssign.AssignOperations>
+                  </ui:MultipleAssign>
+                  <ui:SendOutlookMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" Account="emilytiampati@outlook.com" AttachmentsCollection="[list_Email_Attachments]" Body="[in_Config(&quot;Rejected_Email_Subject&quot;).ToString]" DisplayName="Send Outlook Mail Message To Rejected Candidates" sap:VirtualizedContainerService.HintSize="478.4,186.4" sap2010:WorkflowViewState.IdRef="SendOutlookMail_4" Importance="Normal" IsBodyHtml="False" IsDraft="False" Sensitivity="Normal" Subject="[str_Rejection_Email_Subject]" To="[str_Candidate_EmailAddress]">
+                    <ui:SendOutlookMail.Files>
+                      <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
+                        <InArgument x:TypeArguments="x:String" />
+                      </scg:List>
+                    </ui:SendOutlookMail.Files>
+                  </ui:SendOutlookMail>
+                  <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="478.4,379.2" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[list_Email_Attachments]">
+                    <ui:ForEach.Body>
+                      <ActivityAction x:TypeArguments="x:String">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="x:String" Name="eachEmailAttachment" />
+                        </ActivityAction.Argument>
+                        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="416,190.4" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:DeleteFileX DisplayName="Delete File" sap:VirtualizedContainerService.HintSize="353.6,104" sap2010:WorkflowViewState.IdRef="DeleteFileX_2" Path="[eachEmailAttachment.ToString]" />
+                        </Sequence>
+                      </ActivityAction>
+                    </ui:ForEach.Body>
+                  </ui:ForEach>
+                </Sequence>
+              </If.Else>
+            </If>
+          </Sequence>
+        </TryCatch.Try>
+        <TryCatch.Catches>
+          <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="640,23.2" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ActivityAction x:TypeArguments="s:Exception">
+              <ActivityAction.Argument>
+                <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+              </ActivityAction.Argument>
+              <Sequence sap2010:Annotation.AnnotationText="This sequence handles system exceptions that may occur during the automation process. It includes activities to capture a screenshot of the screen when an exception occurs and sends an email notification to stakeholders to inform them about the encountered issue." sap:VirtualizedContainerService.HintSize="496,629.6" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="x:String" Name="str_FilePath" />
+                  <Variable x:TypeArguments="x:String" Name="str_FolderPath" />
+                </Sequence.Variables>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Assign DisplayName="Assign Folder Path to Save Screenshot" sap:VirtualizedContainerService.HintSize="433.6,121.6" sap2010:WorkflowViewState.IdRef="Assign_3">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[str_FolderPath]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">Exceptions_Screenshots</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke TakeScreenshot Workflow" sap:VirtualizedContainerService.HintSize="433.6,153.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Framework\TakeScreenshot.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_Folder">[str_FolderPath]</InArgument>
+                    <InOutArgument x:TypeArguments="x:String" x:Key="io_FilePath">[str_FilePath]</InOutArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+                <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" Body="[in_Config(&quot;EmailBody&quot;).ToString.Replace(&quot;@Source&quot;,  exception.Source.ToString).Replace(&quot;@Message&quot;, exception.Message.ToString)]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="433.6,188.8" sap2010:WorkflowViewState.IdRef="SendOutlookMail_5" Importance="Normal" IsBodyHtml="False" IsDraft="False" Sensitivity="Normal" Subject="[in_Config(&quot;EmailSubject&quot;).ToString]" To="[in_Config(&quot;EmailCredentials&quot;).ToString]">
+                  <ui:SendOutlookMail.Files>
+                    <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
+                      <InArgument x:TypeArguments="x:String">[str_FilePath]</InArgument>
+                    </scg:List>
+                  </ui:SendOutlookMail.Files>
+                </ui:SendOutlookMail>
+                <Rethrow sap:VirtualizedContainerService.HintSize="433.6,48" sap2010:WorkflowViewState.IdRef="Rethrow_1" />
+              </Sequence>
+            </ActivityAction>
+          </Catch>
+        </TryCatch.Catches>
+      </TryCatch>
+    </Sequence>
   <Sequence DisplayName="SendEmailToCandidates" sap:VirtualizedContainerService.HintSize="737.3333333333334,2300" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="scg:List(x:String)" Name="list_Email_Attachments" />

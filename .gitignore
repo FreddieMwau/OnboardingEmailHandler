@@ -1,9 +1,11 @@
 # Ignore Orchestrator specific files (if used)
-# project.json
 *.local/
 
 # Ignore Logs folder
 Logs/
+
+# Ignore Screenshots folder
+Exceptions_Screenshots/
 
 # Ignore Output folder
 Output/
