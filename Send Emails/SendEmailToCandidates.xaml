@@ -157,9 +157,7 @@
                 <ui:SendOutlookMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" Account="[in_Config(&quot;From_Email&quot;).ToString]" AttachmentsCollection="[list_Email_Attachments]" Body="[in_Config(&quot;Hired_Email_Body&quot;).ToString]" DisplayName="Send Outlook Mail Message To Hired Candidates" sap:VirtualizedContainerService.HintSize="450,190.66666666666666" sap2010:WorkflowViewState.IdRef="SendOutlookMail_1" Importance="Normal" IsBodyHtml="False" IsDraft="False" Sensitivity="Normal" Subject="[in_Config(&quot;Hired_Email_Subject&quot;).ToString]" TimeoutMS="30000" To="[str_Candidate_EmailAddress]">
                   <ui:SendOutlookMail.Files>
                     <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
-                      <InArgument x:TypeArguments="x:String">
-                        <VisualBasicValue x:TypeArguments="x:String" ExpressionText="str_RisingStar_FilePath" />
-                      </InArgument>
+                      <InArgument x:TypeArguments="x:String">[str_RisingStar_FilePath]</InArgument>
                     </scg:List>
                   </ui:SendOutlookMail.Files>
                 </ui:SendOutlookMail>
@@ -209,7 +207,7 @@
                           <OutArgument x:TypeArguments="x:String">[str_Rejection_Email_Subject]</OutArgument>
                         </ui:AssignOperation.To>
                         <ui:AssignOperation.Value>
-                          <InArgument x:TypeArguments="x:String">[in_TransactionItem.SpecificContent("JobTitle").ToString + " Application"]</InArgument>
+                          <InArgument x:TypeArguments="x:String">[in_TransactionItem.SpecificContent("Job Title").ToString + " Application"]</InArgument>
                         </ui:AssignOperation.Value>
                       </ui:AssignOperation>
                     </scg:List>
@@ -218,9 +216,7 @@
                 <ui:SendOutlookMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" Account="[in_Config(&quot;From_Email&quot;).ToString]" Body="[in_Config(&quot;Rejected_Email_Subject&quot;).ToString]" DisplayName="Send Outlook Mail Message To Rejected Candidates" sap:VirtualizedContainerService.HintSize="478.6666666666667,190.66666666666666" sap2010:WorkflowViewState.IdRef="SendOutlookMail_4" Importance="Normal" IsBodyHtml="False" IsDraft="False" Sensitivity="Normal" Subject="[str_Rejection_Email_Subject]" To="[str_Candidate_EmailAddress]">
                   <ui:SendOutlookMail.Files>
                     <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
-                      <InArgument x:TypeArguments="x:String">
-                        <VisualBasicValue x:TypeArguments="x:String" ExpressionText="list_Email_Attachments(0)" />
-                      </InArgument>
+                      <InArgument x:TypeArguments="x:String">[list_Email_Attachments(0)]</InArgument>
                     </scg:List>
                   </ui:SendOutlookMail.Files>
                 </ui:SendOutlookMail>
