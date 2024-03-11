@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Delete_Edited_Files" sap:VirtualizedContainerService.HintSize="1197.3333333333333,1523.3333333333333" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Delete_Edited_Files" sap:VirtualizedContainerService.HintSize="1498.4,1450.4" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -84,31 +84,33 @@
       <AssemblyReference>System.IO.Packaging</AssemblyReference>
       <AssemblyReference>System.IO.FileSystem.AccessControl</AssemblyReference>
       <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="608,1458.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap:VirtualizedContainerService.HintSize="609.6,1385.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Boolean" Name="bool_Folder_Exists" />
       <Variable x:TypeArguments="x:String" Name="str_Project_folder_Path" />
+      <Variable x:TypeArguments="x:String" Name="str_UpdatedTemplatesPath" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:GetEnvironmentFolder DisplayName="Get Environment Folder" FolderPath="[str_Project_folder_Path]" sap:VirtualizedContainerService.HintSize="546,126.66666666666667" sap2010:WorkflowViewState.IdRef="GetEnvironmentFolder_1" SpecialFolder="MyDocuments" />
-    <Assign sap:VirtualizedContainerService.HintSize="546,125.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_1">
+    <ui:GetEnvironmentFolder DisplayName="Get Environment Folder" FolderPath="[str_Project_folder_Path]" sap:VirtualizedContainerService.HintSize="547.2,102.4" sap2010:WorkflowViewState.IdRef="GetEnvironmentFolder_1" SpecialFolder="MyDocuments" />
+    <Assign sap:VirtualizedContainerService.HintSize="547.2,121.6" sap2010:WorkflowViewState.IdRef="Assign_3">
       <Assign.To>
-        <OutArgument x:TypeArguments="x:String">[str_Project_folder_Path]</OutArgument>
+        <OutArgument x:TypeArguments="x:String">[str_UpdatedTemplatesPath]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="x:String">[str_Project_folder_Path + "\UiPath\OnboardingEmailHandler\Updated Template Documents"]</InArgument>
+        <InArgument x:TypeArguments="x:String">[Path.Combine(str_Project_Folder_Path, "UiPath\OnboardingEmailHandler\Updated Template Documents")]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:FolderExistsX DisplayName="Folder Exists" Exists="[bool_Folder_Exists]" sap:VirtualizedContainerService.HintSize="546,176.66666666666666" sap2010:WorkflowViewState.IdRef="FolderExistsX_1" Path="[str_Project_folder_Path]" />
-    <If Condition="[bool_Folder_Exists]" sap:VirtualizedContainerService.HintSize="546,942" sap2010:WorkflowViewState.IdRef="If_1">
+    <ui:FolderExistsX DisplayName="Folder Exists" Exists="[bool_Folder_Exists]" sap:VirtualizedContainerService.HintSize="547.2,174.4" sap2010:WorkflowViewState.IdRef="FolderExistsX_1" Path="[str_UpdatedTemplatesPath]" />
+    <If Condition="[bool_Folder_Exists]" sap:VirtualizedContainerService.HintSize="547.2,898.4" sap2010:WorkflowViewState.IdRef="If_1">
       <If.Then>
-        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="512,590" sap2010:WorkflowViewState.IdRef="Sequence_2">
+        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="513.6,546.4" sap2010:WorkflowViewState.IdRef="Sequence_2">
           <Sequence.Variables>
             <Variable x:TypeArguments="scg:List(x:String)" Name="list_files" />
           </Sequence.Variables>
@@ -117,27 +119,27 @@
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Assign sap:VirtualizedContainerService.HintSize="450,125.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_2">
+          <Assign sap:VirtualizedContainerService.HintSize="451.2,121.6" sap2010:WorkflowViewState.IdRef="Assign_2">
             <Assign.To>
               <OutArgument x:TypeArguments="scg:List(x:String)">[list_files]</OutArgument>
             </Assign.To>
             <Assign.Value>
-              <InArgument x:TypeArguments="scg:List(x:String)">[Directory.GetFiles(str_Project_folder_Path).ToList]</InArgument>
+              <InArgument x:TypeArguments="scg:List(x:String)">[Directory.GetFiles(str_UpdatedTemplatesPath).ToList]</InArgument>
             </Assign.Value>
           </Assign>
-          <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="450,380" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[list_files]">
+          <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="451.2,338.4" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[list_files]">
             <ui:ForEach.Body>
               <ActivityAction x:TypeArguments="x:String">
                 <ActivityAction.Argument>
                   <DelegateInArgument x:TypeArguments="x:String" Name="currentText" />
                 </ActivityAction.Argument>
-                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="416,189.33333333333334" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="416,190.4" sap2010:WorkflowViewState.IdRef="Sequence_4">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:DeleteFileX DisplayName="Delete File" sap:VirtualizedContainerService.HintSize="354,104.66666666666667" sap2010:WorkflowViewState.IdRef="DeleteFileX_1" Path="[currentText.ToString]" />
+                  <ui:DeleteFileX DisplayName="Delete File" sap:VirtualizedContainerService.HintSize="353.6,104" sap2010:WorkflowViewState.IdRef="DeleteFileX_1" Path="[currentText.ToString]" />
                 </Sequence>
               </ActivityAction>
             </ui:ForEach.Body>
@@ -145,13 +147,13 @@
         </Sequence>
       </If.Then>
       <If.Else>
-        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,189.33333333333334" sap2010:WorkflowViewState.IdRef="Sequence_3">
+        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,190.4" sap2010:WorkflowViewState.IdRef="Sequence_3">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Create Folder" sap:VirtualizedContainerService.HintSize="354,104.66666666666667" sap2010:WorkflowViewState.IdRef="CreateDirectory_1" Path="Updated Template Documents" />
+          <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Create Folder" sap:VirtualizedContainerService.HintSize="353.6,104" sap2010:WorkflowViewState.IdRef="CreateDirectory_1" Path="[str_UpdatedTemplatesPath]" />
         </Sequence>
       </If.Else>
     </If>
