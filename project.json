@@ -4,6 +4,7 @@
   "description": "This automation works on emailing new candidates",
   "main": "Main.xaml",
   "dependencies": {
+    "UiPath.Database.Activities": "[1.8.2-preview]",
     "UiPath.Excel.Activities": "[2.23.2-preview]",
     "UiPath.Mail.Activities": "[1.22.1]",
     "UiPath.System.Activities": "[22.10.4]",
