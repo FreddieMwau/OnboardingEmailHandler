@@ -4,7 +4,7 @@
     <x:Property Name="in_TransactionItem" Type="InArgument(ui:QueueItem)" />
     <x:Property Name="in_EndTime" Type="InArgument(s:DateTime)" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>1191.3333333333333,1536</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1191.3333333333333,1109.3333333333333</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -132,15 +132,15 @@
       <AssemblyReference>WindowsBase</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="594,1471.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_4">
+  <Sequence sap:VirtualizedContainerService.HintSize="615.3333333333334,1809.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_4">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="532,1383.3333333333333" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="553.3333333333334,1721.3333333333333" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <TryCatch.Try>
-        <Sequence DisplayName="Update the Candidates Database" sap:VirtualizedContainerService.HintSize="493.3333333333333,1121.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_1">
+        <Sequence DisplayName="Update the Candidates Database" sap:VirtualizedContainerService.HintSize="514.6666666666666,1462.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_1">
           <Sequence.Variables>
             <Variable x:TypeArguments="ui:DatabaseConnection" Name="db_ConnectionString" />
             <Variable x:TypeArguments="s:DateTime" Name="time_EndTime" />
@@ -166,8 +166,8 @@
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:DatabaseConnect DisplayName="Connect to Database" sap:VirtualizedContainerService.HintSize="431.3333333333333,100" sap2010:WorkflowViewState.IdRef="DatabaseConnect_2" ProviderName="Microsoft.Data.SqlClient" ConnectionString="Data Source=localhost;Initial Catalog=CandidateSummaryDB;User ID=SA;Password=Strong!Passw0rd;Encrypt=False" DatabaseConnection="[db_ConnectionString]" />
-          <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="431.3333333333333,600.6666666666666" sap2010:WorkflowViewState.IdRef="MultipleAssign_3">
+          <ui:DatabaseConnect DisplayName="Connect to Database" sap:VirtualizedContainerService.HintSize="452.6666666666667,100" sap2010:WorkflowViewState.IdRef="DatabaseConnect_2" ProviderName="Microsoft.Data.SqlClient" ConnectionString="Data Source=localhost;Initial Catalog=CandidateSummaryDB;User ID=SA;Password=Strong!Passw0rd;Encrypt=False" DatabaseConnection="[db_ConnectionString]" />
+          <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="452.6666666666667,600.6666666666666" sap2010:WorkflowViewState.IdRef="MultipleAssign_3">
             <ui:MultipleAssign.AssignOperations>
               <scg:List x:TypeArguments="ui:AssignOperation" Capacity="32">
                 <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_4">
@@ -301,35 +301,68 @@
               </scg:List>
             </ui:MultipleAssign.AssignOperations>
           </ui:MultipleAssign>
-          <ui:ExecuteNonQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" AffectedRecords="[int_RowsAffected]" DisplayName="Run Command" ExistingDbConnection="[db_ConnectionString]" sap:VirtualizedContainerService.HintSize="431.3333333333333,156" sap2010:WorkflowViewState.IdRef="ExecuteNonQuery_2" Sql="SET IDENTITY_INSERT [CandidateSummaryDB].[dbo].[Reports] ON;&#xD;&#xA;INSERT INTO [dbo].[Reports] ([ID], [FullName], [Email], [JobTitle], [CandidateStatus], [AcceptanceDeadline], [StartDate], [Address], [TimeStamp], [BotName], [StartTime], [EndTime], [LastUpdatedBot], [AutomationStatus], [SystemException], [BusinessException])&#xD;&#xA;VALUES (@ID, @FullName, @Email, @JobTitle, @CandidateStatus, @AcceptanceDeadline, @StartDate, @Address, GETDATE(), @BotName, @StartTime, @EndTime, @LastUpdatedBot, @AutomationStatus, @SystemException, @BusinessException);">
+          <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="452.6666666666667,342.6666666666667" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+            <ui:CommentOut.Body>
+              <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,222.66666666666666" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:ExecuteNonQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" AffectedRecords="[int_RowsAffected]" DisplayName="Run Command" ExistingDbConnection="[db_ConnectionString]" sap:VirtualizedContainerService.HintSize="354,138" sap2010:WorkflowViewState.IdRef="ExecuteNonQuery_2" Sql="SET IDENTITY_INSERT [CandidateSummaryDB].[dbo].[Reports] ON;&#xD;&#xA;INSERT INTO [dbo].[Reports] ([ID], [FullName], [Email], [JobTitle], [CandidateStatus], [AcceptanceDeadline], [StartDate], [Address], [TimeStamp], [BotName], [StartTime], [EndTime], [LastUpdatedBot], [AutomationStatus], [SystemException], [BusinessException])&#xD;&#xA;VALUES (@ID, @FullName, @Email, @JobTitle, @CandidateStatus, @AcceptanceDeadline, @StartDate, @Address, GETDATE(), @BotName, @StartTime, @EndTime, @LastUpdatedBot, @AutomationStatus, @SystemException, @BusinessException);">
+                  <ui:ExecuteNonQuery.Parameters>
+                    <InArgument x:TypeArguments="x:Int32" x:Key="ID">
+                      <VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="int_ID" />
+                    </InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="FullName">
+                      <VisualBasicValue x:TypeArguments="x:String" ExpressionText="str_FullName" />
+                    </InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="Email">
+                      <VisualBasicValue x:TypeArguments="x:String" ExpressionText="str_Email" />
+                    </InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="JobTitle">
+                      <VisualBasicValue x:TypeArguments="x:String" ExpressionText="str_JobTitle" />
+                    </InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="CandidateStatus">
+                      <VisualBasicValue x:TypeArguments="x:String" ExpressionText="str_CandidatesStatus" />
+                    </InArgument>
+                    <InArgument x:TypeArguments="s:DateTime" x:Key="AcceptanceDeadline">
+                      <VisualBasicValue x:TypeArguments="s:DateTime" ExpressionText="time_AccesptanceDeadline" />
+                    </InArgument>
+                    <InArgument x:TypeArguments="s:DateTime" x:Key="StartDate">
+                      <VisualBasicValue x:TypeArguments="s:DateTime" ExpressionText="time_StartDate" />
+                    </InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="Address">
+                      <VisualBasicValue x:TypeArguments="x:String" ExpressionText="str_Address" />
+                    </InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="BotName">
+                      <VisualBasicValue x:TypeArguments="x:String" ExpressionText="str_BotName" />
+                    </InArgument>
+                    <InArgument x:TypeArguments="s:DateTime" x:Key="StartTime">
+                      <VisualBasicValue x:TypeArguments="s:DateTime" ExpressionText="time_StartTime" />
+                    </InArgument>
+                    <InArgument x:TypeArguments="s:DateTime" x:Key="EndTime">
+                      <VisualBasicValue x:TypeArguments="s:DateTime" ExpressionText="time_EndTime" />
+                    </InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="LastUpdatedBot">
+                      <VisualBasicValue x:TypeArguments="x:String" ExpressionText="str_LastUpdatedBot" />
+                    </InArgument>
+                    <InArgument x:TypeArguments="x:Boolean" x:Key="AutomationStatus">
+                      <VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="bool_AutomationStatus" />
+                    </InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="SystemException">
+                      <VisualBasicValue x:TypeArguments="x:String" ExpressionText="str_SystemException" />
+                    </InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="BusinessException">
+                      <VisualBasicValue x:TypeArguments="x:String" ExpressionText="str_BusinessException" />
+                    </InArgument>
+                  </ui:ExecuteNonQuery.Parameters>
+                </ui:ExecuteNonQuery>
+              </Sequence>
+            </ui:CommentOut.Body>
+          </ui:CommentOut>
+          <ui:ExecuteNonQuery AffectedRecords="{x:Null}" ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Run Command" ExistingDbConnection="[db_ConnectionString]" sap:VirtualizedContainerService.HintSize="452.6666666666667,155.33333333333334" sap2010:WorkflowViewState.IdRef="ExecuteNonQuery_3" Sql=" SET IDENTITY_INSERT [CandidateSummaryDB].[dbo].[Reports] ON;&#xD;&#xA;UPDATE [CandidateSummaryDB].[dbo].[Reports]&#xD;&#xA;SET &#xD;&#xA;    [StartTime] = @StartTime,&#xD;&#xA;    [EndTime] = @EndTime,&#xD;&#xA;    [LastUpdatedBot] = @LastUpdatedBot,&#xD;&#xA;    [AutomationStatus] = @AutomationStatus,&#xD;&#xA;    [SystemException] = @SystemException&#xD;&#xA;WHERE&#xD;&#xA;    [ID] = @ID;&#xD;&#xA;">
             <ui:ExecuteNonQuery.Parameters>
-              <InArgument x:TypeArguments="x:Int32" x:Key="ID">
-                <VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="int_ID" />
-              </InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="FullName">
-                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="str_FullName" />
-              </InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="Email">
-                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="str_Email" />
-              </InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="JobTitle">
-                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="str_JobTitle" />
-              </InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="CandidateStatus">
-                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="str_CandidatesStatus" />
-              </InArgument>
-              <InArgument x:TypeArguments="s:DateTime" x:Key="AcceptanceDeadline">
-                <VisualBasicValue x:TypeArguments="s:DateTime" ExpressionText="time_AccesptanceDeadline" />
-              </InArgument>
-              <InArgument x:TypeArguments="s:DateTime" x:Key="StartDate">
-                <VisualBasicValue x:TypeArguments="s:DateTime" ExpressionText="time_StartDate" />
-              </InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="Address">
-                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="str_Address" />
-              </InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="BotName">
-                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="str_BotName" />
-              </InArgument>
               <InArgument x:TypeArguments="s:DateTime" x:Key="StartTime">
                 <VisualBasicValue x:TypeArguments="s:DateTime" ExpressionText="time_StartTime" />
               </InArgument>
@@ -345,17 +378,17 @@
               <InArgument x:TypeArguments="x:String" x:Key="SystemException">
                 <VisualBasicValue x:TypeArguments="x:String" ExpressionText="str_SystemException" />
               </InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="BusinessException">
-                <VisualBasicValue x:TypeArguments="x:String" ExpressionText="str_BusinessException" />
+              <InArgument x:TypeArguments="x:Int32" x:Key="ID">
+                <VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="int_ID" />
               </InArgument>
             </ui:ExecuteNonQuery.Parameters>
           </ui:ExecuteNonQuery>
-          <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="431.3333333333333,132" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[&quot;Numbers of Rows afftected is &quot;+ int_RowsAffected.ToString + &quot; for &quot;+ str_FullName]" />
-          <ui:DatabaseDisconnect DatabaseConnection="[db_ConnectionString]" DisplayName="Disconnect from Database" sap:VirtualizedContainerService.HintSize="431.3333333333333,48" sap2010:WorkflowViewState.IdRef="DatabaseDisconnect_1" />
+          <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="452.6666666666667,131.33333333333334" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[&quot;Numbers of Rows afftected is &quot;+ int_RowsAffected.ToString + &quot; for &quot;+ str_FullName]" />
+          <ui:DatabaseDisconnect DatabaseConnection="[db_ConnectionString]" DisplayName="Disconnect from Database" sap:VirtualizedContainerService.HintSize="452.6666666666667,48" sap2010:WorkflowViewState.IdRef="DatabaseDisconnect_1" />
         </Sequence>
       </TryCatch.Try>
       <TryCatch.Catches>
-        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="498,23.333333333333332" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="519.3333333333334,22.666666666666668" sap2010:WorkflowViewState.IdRef="Catch`1_1">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -366,7 +399,7 @@
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
             </ActivityAction.Argument>
-            <Sequence sap2010:Annotation.AnnotationText="This sequence handles system exceptions that may occur during the automation process. It includes activities to capture a screenshot of the screen when an exception occurs and sends an email notification to stakeholders to inform them about the encountered issue." sap:VirtualizedContainerService.HintSize="496,640.6666666666666" sap2010:WorkflowViewState.IdRef="Sequence_5">
+            <Sequence sap2010:Annotation.AnnotationText="This sequence handles system exceptions that may occur during the automation process. It includes activities to capture a screenshot of the screen when an exception occurs and sends an email notification to stakeholders to inform them about the encountered issue." sap:VirtualizedContainerService.HintSize="496,642" sap2010:WorkflowViewState.IdRef="Sequence_5">
               <Sequence.Variables>
                 <Variable x:TypeArguments="x:String" Name="str_FilePath" />
                 <Variable x:TypeArguments="x:String" Name="str_FolderPath" />
@@ -386,13 +419,13 @@
                   <InArgument x:TypeArguments="x:String">Exceptions_Screenshots</InArgument>
                 </Assign.Value>
               </Assign>
-              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke TakeScreenshot Workflow" sap:VirtualizedContainerService.HintSize="434,154.66666666666666" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Framework\TakeScreenshot.xaml">
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke TakeScreenshot Workflow" sap:VirtualizedContainerService.HintSize="434,155.33333333333334" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Framework\TakeScreenshot.xaml">
                 <ui:InvokeWorkflowFile.Arguments>
                   <InArgument x:TypeArguments="x:String" x:Key="in_Folder">[str_FolderPath]</InArgument>
                   <InOutArgument x:TypeArguments="x:String" x:Key="io_FilePath">[str_FilePath]</InOutArgument>
                 </ui:InvokeWorkflowFile.Arguments>
               </ui:InvokeWorkflowFile>
-              <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" Body="[in_Config(&quot;EmailBody&quot;).ToString.Replace(&quot;@Source&quot;,  exception.Source.ToString).Replace(&quot;@Message&quot;, exception.Message.ToString)]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="434,197.33333333333334" sap2010:WorkflowViewState.IdRef="SendOutlookMail_1" Importance="Normal" IsBodyHtml="False" IsDraft="False" Sensitivity="Normal" Subject="[in_Config(&quot;EmailSubject&quot;).ToString]" To="[in_Config(&quot;EmailCredentials&quot;).ToString]">
+              <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" Body="[in_Config(&quot;EmailBody&quot;).ToString.Replace(&quot;@Source&quot;,  exception.Source.ToString).Replace(&quot;@Message&quot;, exception.Message.ToString)]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="434,198" sap2010:WorkflowViewState.IdRef="SendOutlookMail_1" Importance="Normal" IsBodyHtml="False" IsDraft="False" Sensitivity="Normal" Subject="[in_Config(&quot;EmailSubject&quot;).ToString]" To="[in_Config(&quot;EmailCredentials&quot;).ToString]">
                 <ui:SendOutlookMail.Files>
                   <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
                     <InArgument x:TypeArguments="x:String">[str_FilePath]</InArgument>
