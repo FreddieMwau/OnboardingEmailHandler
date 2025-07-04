@@ -112,7 +112,7 @@
       <AssemblyReference>UiPath.Workflow</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="SendEmailToCandidates" sap:VirtualizedContainerService.HintSize="598,1461.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="SendEmailToCandidates" sap:VirtualizedContainerService.HintSize="1309,1489" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="scg:List(x:String)" Name="list_Email_Attachments" />
     </Sequence.Variables>
@@ -121,9 +121,9 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="536,1373.3333333333333" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="470,1466" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <TryCatch.Try>
-        <Sequence sap2010:Annotation.AnnotationText="This Sequence checks the status of the transaction item to determine if it's hired or rejected.&#xA;If the status is hired, the workflow sends the offer and acceptance letters as attachment to the candidate.&#xA;If the status is rejected, the workflow sends the rejection letter as attachment.&#xA;" sap:VirtualizedContainerService.HintSize="416,210" sap2010:WorkflowViewState.IdRef="Sequence_4">
+        <Sequence sap2010:Annotation.AnnotationText="This Sequence checks the status of the transaction item to determine if it's hired or rejected.&#xA;If the status is hired, the workflow sends the offer and acceptance letters as attachment to the candidate.&#xA;If the status is rejected, the workflow sends the rejection letter as attachment.&#xA;" DisplayName="Try" sap:VirtualizedContainerService.HintSize="468,177" sap2010:WorkflowViewState.IdRef="Sequence_4">
           <Sequence.Variables>
             <Variable x:TypeArguments="x:String" Default="[in_TransactionItem.SpecificContent(&quot;Email&quot;).ToString]" Name="str_Candidate_EmailAddress" />
             <Variable x:TypeArguments="x:String" Name="str_ProjectFolderpath" />
@@ -271,7 +271,7 @@
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
             </ActivityAction.Argument>
-            <Sequence sap2010:Annotation.AnnotationText="This sequence handles system exceptions that may occur during the automation process. It includes activities to capture a screenshot of the screen when an exception occurs and sends an email notification to stakeholders to inform them about the encountered issue." sap:VirtualizedContainerService.HintSize="496,1106.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_7">
+            <Sequence sap2010:Annotation.AnnotationText="This sequence handles system exceptions that may occur during the automation process. It includes activities to capture a screenshot of the screen when an exception occurs and sends an email notification to stakeholders to inform them about the encountered issue." DisplayName="Body" sap:VirtualizedContainerService.HintSize="468,1104" sap2010:WorkflowViewState.IdRef="Sequence_7">
               <Sequence.Variables>
                 <Variable x:TypeArguments="x:String" Name="str_FilePath" />
                 <Variable x:TypeArguments="x:String" Name="str_FolderPath" />
@@ -284,7 +284,7 @@
                   <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Assign DisplayName="Assign Folder Path to Save Screenshot" sap:VirtualizedContainerService.HintSize="434,125.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_3">
+              <Assign DisplayName="Assign Folder Path to Save Screenshot" sap:VirtualizedContainerService.HintSize="434,120" sap2010:WorkflowViewState.IdRef="Assign_3">
                 <Assign.To>
                   <OutArgument x:TypeArguments="x:String">[str_FolderPath]</OutArgument>
                 </Assign.To>
@@ -292,7 +292,7 @@
                   <InArgument x:TypeArguments="x:String">Exceptions_Screenshots</InArgument>
                 </Assign.Value>
               </Assign>
-              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke TakeScreenshot Workflow" sap:VirtualizedContainerService.HintSize="434,155.33333333333334" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Framework\TakeScreenshot.xaml">
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke TakeScreenshot Workflow" sap:VirtualizedContainerService.HintSize="434,150" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Framework\TakeScreenshot.xaml">
                 <ui:InvokeWorkflowFile.Arguments>
                   <InArgument x:TypeArguments="x:String" x:Key="in_Folder">[str_FolderPath]</InArgument>
                   <InOutArgument x:TypeArguments="x:String" x:Key="io_FilePath">[str_FilePath]</InOutArgument>
@@ -316,21 +316,11 @@
               </Assign>
               <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Send Emails\UpdateTheCandidateDatabase.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="434,155.33333333333334" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Send Emails\UpdateTables.xaml">
                 <ui:InvokeWorkflowFile.Arguments>
-                  <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
-                    <VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="in_Config" />
-                  </InArgument>
-                  <InArgument x:TypeArguments="ui:QueueItem" x:Key="in_TransactionItem">
-                    <VisualBasicValue x:TypeArguments="ui:QueueItem" ExpressionText="in_TransactionItem" />
-                  </InArgument>
-                  <InArgument x:TypeArguments="x:Boolean" x:Key="in_AutomationStatus">
-                    <VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="bool_AutomationStatus" />
-                  </InArgument>
-                  <InArgument x:TypeArguments="s:Exception" x:Key="in_Exception">
-                    <VisualBasicValue x:TypeArguments="s:Exception" ExpressionText="exception" />
-                  </InArgument>
-                  <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">
-                    <VisualBasicValue x:TypeArguments="s:DateTime" ExpressionText="in_StartTime_date" />
-                  </InArgument>
+                  <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
+                  <InArgument x:TypeArguments="ui:QueueItem" x:Key="in_TransactionItem">[in_TransactionItem]</InArgument>
+                  <InArgument x:TypeArguments="x:Boolean" x:Key="in_AutomationStatus">[bool_AutomationStatus]</InArgument>
+                  <InArgument x:TypeArguments="s:Exception" x:Key="in_Exception">[exception]</InArgument>
+                  <InArgument x:TypeArguments="s:DateTime" x:Key="in_StartTime">[in_StartTime_date]</InArgument>
                 </ui:InvokeWorkflowFile.Arguments>
               </ui:InvokeWorkflowFile>
               <Rethrow sap:VirtualizedContainerService.HintSize="434,48" sap2010:WorkflowViewState.IdRef="Rethrow_1" />
@@ -338,6 +328,9 @@
           </ActivityAction>
         </Catch>
       </TryCatch.Catches>
+      <TryCatch.Finally>
+        <Sequence DisplayName="Finally" sap2010:WorkflowViewState.IdRef="Sequence_8" />
+      </TryCatch.Finally>
     </TryCatch>
   </Sequence>
 </Activity>

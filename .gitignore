@@ -1,52 +1,62 @@
-# Ignore Orchestrator specific files (if used)
-*.local/
+# =========================================
+# UiPath Marketplace / REFramework Project
+# =========================================
 
-# Ignore Logs folder
+# Logs & screenshots (runtime artifacts)
 Logs/
+Screenshots/
+*.screenshot.png
+*.error.png
 
-# Ignore Screenshots folder
-Exceptions_Screenshots/
+# Output folders (leave template Excel only)
+Data/Output/
+!Data/Output/PartnershipEmails_Report.xlsx
 
-# Ignore Output folder
-Output/
+# UiPath local cache and metadata
+*.local/
+.project.json
+.project/
+.json/
 
-# Ignore Temporary files
-*.tmp
-
-# Ignore User-specific files
+# VS & JetBrains IDEs
+.vs/
+.idea/
+.vscode/
+*.suo
 *.user
 
-# Ignore Compiled files
+# C#/.NET build artifacts (if using custom libraries)
+bin/
+obj/
 *.dll
 *.exe
 *.pdb
+*.cache
 
-# Ignore Visual Studio files (if used for development)
-.vs/
-*.suo
-*.user
-*.sln
-*.csproj
-*.csproj.user
+# Temporary or lock files
+*.tmp
+*.lock
+*.bak
+*.db
+*.orig
 
-# Ignore Dependency directories
-packages/
+# Excel/Office temp files
+~$*
+*.xlsx~
+*.xlsm~
+*.xlsb~
 
-# Ignore NuGet executable scripts
-*.nupkg
-*.nuspec
+# Mac & Windows system files
+.DS_Store
+Thumbs.db
 
-# Ignore IDE-specific files (if used)
-.vscode/
-.idea/
+# Publish settings or deployment secrets
+*.publishsettings
+*.json.user
+.env
+*.env
 
-# Ignore credentials, secrets, and configuration files
-config.json
-credentials.json
-secrets.json
-
-# Ignore Robot log files (if not necessary)
+# Git & GitHub junk
+.gitignore
+.gitattributes
 *.log
-
-# Ignore temporary and backup files
-*~

@@ -22236,15 +22236,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\EmillyTiampati\\.nuget\\packages\\": {}
+    "C:\\Users\\MorisMwaiWachira\\.nuget\\packages\\": {}
   },
   "project": {
     "restore": {
       "projectUniqueName": "OnboardingEmailHandler",
       "projectName": "OnboardingEmailHandler",
-      "projectPath": "C:\\Users\\EmillyTiampati\\Documents\\UiPath\\OnboardingEmailHandler\\.local",
-      "packagesPath": "C:\\Users\\EmillyTiampati\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\EmillyTiampati\\Documents\\UiPath\\OnboardingEmailHandler\\.local"
+      "projectPath": "C:\\Users\\MorisMwaiWachira\\OneDrive - THH LLC\\Documents\\UiPath\\OnboardingEmailHandler\\.local",
+      "packagesPath": "C:\\Users\\MorisMwaiWachira\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\MorisMwaiWachira\\OneDrive - THH LLC\\Documents\\UiPath\\OnboardingEmailHandler\\.local",
+      "UsingMicrosoftNETSdk": false,
+      "restoreAuditProperties": {
+        "enableAudit": "False"
+      }
     },
     "frameworks": {
       "net8.0-windows7.0": {
@@ -22285,7 +22289,7 @@
             "version": "[1.19.1-preview, 1.19.1-preview]"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Users\\EmillyTiampati\\AppData\\Local\\Programs\\UiPath\\Studio\\PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Users\\MorisMwaiWachira\\AppData\\Local\\Programs\\UiPath\\Studio\\PortableRuntimeIdentifierGraph.json"
       }
     },
     "runtimes": {
